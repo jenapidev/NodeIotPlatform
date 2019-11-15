@@ -7,7 +7,7 @@
 		"setup": "cross-env DEBUG=nodeproject:* node setup.js",
 		"lint": "standard",
 		"agent-test": "cross-env DEBUG=nodeproject:* nyc --reporter=lcov ava tests/agent-test.js --verbose",
-		"metric-test": "cross-env DEBUG=nodeproject:* nyc --reporter=lcov ava tests/metric-test.js --verbose"
+		"DB-example": "cross-env DEBUG=nodeproject:* node examples/db.js"
 	},
 	"author": "Jean Pierre Nieto",
 	"license": "MIT",

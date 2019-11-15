@@ -1,60 +1,63 @@
-'use strict'
+'use strict';
 
-module.exports = function setupAgent (AgentModel) {
-  const createOrUpdate = async (agent) => {
-    const cond = {
-      where: {
-        uuid: agent.uuid
-      }
-    }
+module.exports = function setupAgent(AgentModel) {
+	async function createOrUpdate(agent) {
+		const cond = {
+			where: {
+				uuid: agent.uuid,
+			},
+		};
 
-    const existigAgent = await AgentModel.findOne(cond)
-    if (existigAgent) {
-      const updated = await AgentModel.update(agent, cond)
-      return updated ? AgentModel.findOne(cond) : existigAgent
-    }
-    const result = await AgentModel.create(agent)
-    return result.toJSON()
-  }
+		const existingAgent = await AgentModel.findOne(cond);
 
-  const findById = (id) => {
-    return AgentModel.findById(id)
-  }
+		if (existingAgent) {
+			const updated = await AgentModel.update(agent, cond);
+			return updated ? AgentModel.findOne(cond) : existingAgent;
+		}
 
-  const findByUuid = (uuid) => {
-    return AgentModel.findOne({
-      where: {
-        uuid
-      }
-    })
-  }
+		const result = await AgentModel.create(agent);
+		return result.toJSON();
+	}
 
-  const findAll = () => {
-    return AgentModel.findAll()
-  }
+	function findById(id) {
+		return AgentModel.findById(id);
+	}
 
-  const findConnected = () => {
-    return AgentModel.findAll({
-      where: {
-        connected: true
-      }
-    })
-  }
+	function findByUuid(uuid) {
+		return AgentModel.findOne({
+			where: {
+				uuid,
+			},
+		});
+	}
 
-  const findByUsername = (username) => {
-    return AgentModel.findAll({
-      where: {
-        username
-      }
-    })
-  }
+	function findAll() {
+		return AgentModel.findAll();
+	}
 
-  return {
-    findById,
-    createOrUpdate,
-    findByUuid,
-    findAll,
-    findConnected,
-    findByUsername
-  }
-}
+	function findConnected() {
+		return AgentModel.findAll({
+			where: {
+				connected: true,
+			},
+		});
+	}
+
+	function findByUsername(username) {
+		return AgentModel.findAll({
+			where: {
+				username,
+				connected: true,
+			},
+		});
+	}
+
+	return {
+		createOrUpdate,
+		findById,
+		findByUuid,
+		findAll,
+		findConnected,
+		findByUsername,
+	};
+};

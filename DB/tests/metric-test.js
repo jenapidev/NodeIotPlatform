@@ -4,7 +4,7 @@ const proxyquire = require('proxyquire');
 const sinon = require('sinon');
 const metricFixture = require('./fixtures/metric');
 
-const single = metricFixture.singleMetric;
+const single = metricFixture.single;
 const uuid = single.uuid;
 const type = single.type;
 const newMetric = {
@@ -60,14 +60,14 @@ const findByTypeAgentUuidArgs = {
 	order: [['createdAt', 'DESC']],
 	include: [
 		{
-			attributes: ['uuid'],
+			attributes: [],
 			model: AgentStub,
 			where: {
-				uuid: single.uuid,
+				uuid,
 			},
-			raw: true,
 		},
 	],
+	raw: true,
 };
 
 let config = {
@@ -101,7 +101,6 @@ test.beforeEach(async () => {
 	MetricStub.findAll
 		.withArgs(findByTypeAgentUuidArgs)
 		.returns(Promise.resolve(metricFixture.byTypeAgentUuid(type, uuid)));
-
 	const setupDataBase = proxyquire('../', {
 		'./models/agent': () => AgentStub,
 		'./models/metric': () => MetricStub,
@@ -169,12 +168,11 @@ test.serial('Metric#findAll - findByAgentUuid', async (t) => {
 
 test.serial('Metric#findAll - findByTypeAgentUuid', async (t) => {
 	let response = await db.Metric.findByTypeAgentUuid(type, uuid);
-	t.true(MetricStub.findAll.called, 'Shoul be called ');
-	t.true(MetricStub.findAll.calledOnce, 'Should be called once');
 
+	t.true(MetricStub.findAll.called, 'Should be called ');
 	t.deepEqual(
-		metricFixture.byTypeAgentUuid(type, uuid),
 		response,
-		'Should be equal',
+		metricFixture.byTypeAgentUuid(type, uuid),
+		'Should be the same',
 	);
 });

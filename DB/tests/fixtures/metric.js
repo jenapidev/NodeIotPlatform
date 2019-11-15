@@ -44,7 +44,7 @@ function extendModel(model, values) {
 }
 
 module.exports = {
-	singleMetric: metric,
+	single: metric,
 	byUuid: (uuid) => {
 		let results = metrics.filter((obj) => obj.uuid === uuid);
 		let types = new Set();
@@ -55,7 +55,17 @@ module.exports = {
 	},
 
 	byTypeAgentUuid: (type, uuid) => {
-		let results = metrics.filter((m) => m.type === type && m.uuid === uuid);
+		let results = metrics
+			.filter((m) => m.type === type)
+			.filter((m) => m.uuid === uuid)
+			.map((m) => ({
+				id: m.id,
+				type: m.type,
+				value: m.value,
+				createdAt: m.createdAt,
+			}))
+			.sort((a, b) => b.createdAt - a.createdAt)
+			.slice(0, 20);
 		return results;
 	},
 };

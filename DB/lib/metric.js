@@ -18,7 +18,7 @@ module.exports = function setupMetric(MetricModel, AgentModel) {
 		});
 	};
 
-	async function findByTypeAgentUuid(type, uuid) {
+	const findByTypeAgentUuid = async (type, uuid) => {
 		return MetricModel.findAll({
 			attributes: ['id', 'type', 'value', 'createdAt'],
 			where: {
@@ -37,13 +37,11 @@ module.exports = function setupMetric(MetricModel, AgentModel) {
 			],
 			raw: true,
 		});
-	}
+	};
 
 	const create = async (uuid, metric) => {
-		const agent = AgentModel.findOne({
-			where: {
-				uuid,
-			},
+		const agent = await AgentModel.findOne({
+			where: { uuid },
 		});
 
 		if (agent) {
