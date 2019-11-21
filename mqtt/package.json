@@ -1,0 +1,25 @@
+{
+	"name": "mqtt",
+	"version": "1.0.0",
+	"description": "```js\r {\r \tagent: {\r \t\tuuid, //Auto generate\r \t\t\tusername, //Defined by config\r \t\t\tname, //Defined by config\r \t\t\thostname, //Get from os system\r \t\t\tpid; //Get from process\r \t}\r }\r ```",
+	"main": "server.js",
+	"scripts": {
+		"lint": "standard",
+		"start": "coss-env NODE_ENV=production node server.js",
+		"start-dev": "redis-server & cross-env DEBUG=node:* nodemon server.js"
+	},
+	"author": "jenapidev",
+	"license": "MIT",
+	"devDependencies": {
+		"nodemon": "^1.19.4",
+		"standard": "^14.3.1"
+	},
+	"dependencies": {
+		"chalk": "^3.0.0",
+		"cross-env": "^6.0.3",
+		"debug": "^4.1.1",
+		"mosca": "^2.8.3",
+		"DB": "file:../DB",
+		"redis": "^2.8.0"
+	}
+}
