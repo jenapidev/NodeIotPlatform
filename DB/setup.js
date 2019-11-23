@@ -23,8 +23,8 @@ async function setup() {
 
 	const config = {
 		database: process.env.DB_NAME || 'nodeproject',
-		username: process.env.DB_USER || 'jenapi',
-		port: process.env.DB_PORT || '5433',
+		username: process.env.DB_USER || 'jeanpy',
+		port: process.env.DB_PORT || '5432',
 		password: process.env.DB_PASS || '0409',
 		host: process.env.DB_HOST || 'localhost',
 		dialect: 'postgres',

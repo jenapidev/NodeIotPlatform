@@ -6,7 +6,8 @@
 	"scripts": {
 		"lint": "standard",
 		"start": "coss-env NODE_ENV=production node server.js",
-		"start-dev": "redis-server & cross-env DEBUG=node:* nodemon server.js"
+		"start-dev": "cross-env DEBUG=node:* nodemon server.js",
+		"mqtt-example": "nodemon examples/mqtt.js"
 	},
 	"author": "jenapidev",
 	"license": "MIT",

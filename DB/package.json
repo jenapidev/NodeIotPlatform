@@ -9,7 +9,7 @@
 		"agent-test": "cross-env DEBUG=node:* nyc --reporter=lcov ava tests/agent-test.js --verbose",
 		"DB-example": "cross-env DEBUG=node:* node examples/db.js"
 	},
-	"author": "Jean Pierre Nieto",
+	"author": "jenapidev",
 	"license": "MIT",
 	"devDependencies": {
 		"ava": "^2.4.0",
