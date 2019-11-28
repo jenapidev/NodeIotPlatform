@@ -35,7 +35,7 @@ const clients = new Map();
 
 let Agent, Metric;
 
-server.on('clientConnected', (client) => {
+server.on('clientConnected', async (client) => {
 	debug(`Client Connected: ${client.id}`);
 	clients.set(client.id, null);
 });

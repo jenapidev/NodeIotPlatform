@@ -19,7 +19,7 @@ module.exports = function setupAgentModel(config) {
 			type: Sequelize.STRING,
 			allowNull: false,
 		},
-		hostName: {
+		hostname: {
 			type: Sequelize.STRING,
 			allowNull: false,
 		},
