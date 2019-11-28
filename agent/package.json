@@ -1,11 +1,20 @@
 {
-  "name": "agent",
-  "version": "1.0.0",
-  "description": "Agent module",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "jenapidev",
-  "license": "MIT"
+	"name": "agent",
+	"version": "1.0.0",
+	"description": "Agent module",
+	"main": "index.js",
+	"scripts": {
+		"lint": "standard"
+	},
+	"author": "jenapidev",
+	"license": "MIT",
+	"devDependencies": {
+		"standard": "^14.3.1"
+	},
+	"dependencies": {
+		"debug": "^4.1.1",
+		"defaults": "^1.0.3",
+		"mqtt": "^3.0.0",
+		"uuid": "^3.3.3"
+	}
 }

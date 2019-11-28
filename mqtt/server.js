@@ -6,7 +6,7 @@ const redis = require('redis');
 const chalk = require('chalk');
 const DB = require('DB');
 
-const { parsePayload } = require('./utils');
+const { parsePayload } = require('../utils/parsePayload');
 
 const backend = {
 	type: 'redis',
